@@ -1,9 +1,0 @@
-docker run -d \
-   -e MQTT_HOST=mqtt.osteen.info \
-   -e MQTT_USERNAME=sosteen \
-   -e "MQTT_PASSWORD=Kb4YcI16!" \
-   -e "MQTT_TOPIC=Kubernetes/ARMCluster/Heartbeats" \
-   -e HEARTBEAT_INTERVAL=30 \
-   --name mqtt_heartbeat \
-   -h HeartbeatTinkerLab \
-   seanosteen/mqtt_heartbeat
