@@ -11,13 +11,13 @@ while True:
     broker_password = sys.argv[3]
     topic = "{0}/{1}".format(sys.argv[4],sys.argv[5])
 
-    client = paho.Client(sys.argv[5])
+    client = paho.Client(paho.CallbackAPIVersion.VERSION1, sys.argv[5])
     client.username_pw_set(broker_username, broker_password)
     print("Connecting to broker {0} as {1}".format(broker, broker_username))
     client.connect(broker)
     print("publishing...")
 
-    message = "{0}".format(datetime.datetime.now())
+    message = '{{"timestamp": "{0}"}}'.format(datetime.datetime.now())
 
     print(message)
     client.publish(topic, message)
