@@ -20,7 +20,7 @@ while True:
     client.connect(broker)
     print("publishing:")
     uptime = datetime.datetime.now() - startTime
-    message = '{{"timestamp": "{0}", "uptime":"{1}" hostname: "{2}"}}'.format(datetime.datetime.now(), uptime, hostname)
+    message = '{{"timestamp": "{0}"; "uptime":"{1}"; hostname: "{2}"}}'.format(datetime.datetime.now(), uptime, hostname)
 
     print(message)
     client.publish(topic, message)
