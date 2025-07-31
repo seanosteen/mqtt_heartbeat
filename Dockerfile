@@ -2,7 +2,7 @@
 # We use the keyword 'FROM' to do that.
 # In our example, we want import the python image.
 # So we write 'python' for the image name and 'latest' for the version.
-FROM python:latest
+FROM python:3-slim
 
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir paho-mqtt
