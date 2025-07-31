@@ -7,15 +7,19 @@ FROM python:latest
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir paho-mqtt
 
-# In order to launch our python code, we must import it into our image.
-# We use the keyword 'COPY' to do that.
-# The first parameter 'main.py' is the name of the file on the host.
-# The second parameter '/' is the path where to put the file on the image.
-# Here we put the file at the image root folder.
-COPY main.py /
+ARG UID=1001
+ARG GID=1001
+
+RUN groupadd --gid $GID appgroup && \
+    useradd --uid $UID --gid $GID -m appuser
+
+WORKDIR /home/appuser/app
+
+
+COPY --chown=appuser:appgroup main.py /home/appuser/app/
 
 # We need to define the command to launch when we are going to run the image.
 # We use the keyword 'CMD' to do that.
 # The following command will execute "python ./main.py".
-CMD ["sh", "-c", "python ./main.py $MQTT_HOST $MQTT_USERNAME $MQTT_PASSWORD $MQTT_TOPIC $HOSTNAME $HEARTBEAT_INTERVAL"]
+CMD ["sh", "-c", "python /home/appuser/app/main.py $MQTT_HOST $MQTT_USERNAME $MQTT_PASSWORD $MQTT_TOPIC $HOSTNAME $HEARTBEAT_INTERVAL"]
 
