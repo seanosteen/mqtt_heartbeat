@@ -1,4 +1,4 @@
 #!/bin/sh
-docker buildx build \
+docker buildx build --no-cache \
 	--push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 \
 	--tag seanosteen/mqtt_heartbeat:latest .
