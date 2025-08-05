@@ -1,8 +1,4 @@
-# A dockerfile must always start by importing the base image.
-# We use the keyword 'FROM' to do that.
-# In our example, we want import the python image.
-# So we write 'python' for the image name and 'latest' for the version.
-FROM python:3-slim
+FROM python:alpine
 
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir paho-mqtt
@@ -10,8 +6,8 @@ RUN pip install --no-cache-dir --upgrade pip && \
 ARG UID=1001
 ARG GID=1001
 
-RUN groupadd --gid $GID appgroup && \
-    useradd --uid $UID --gid $GID -m appuser
+RUN addgroup -g $GID appgroup && \
+    adduser -u $UID -G appgroup -D appuser
 
 WORKDIR /home/appuser/app
 
