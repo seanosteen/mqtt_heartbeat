@@ -1,5 +1,7 @@
 FROM python:alpine
 
+RUN apk update && apk upgrade
+
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir paho-mqtt
 
