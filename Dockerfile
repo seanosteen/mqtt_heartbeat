@@ -18,8 +18,5 @@ COPY --chown=appuser:appgroup main.py /home/appuser/app/
 
 USER appuser
 
-# We need to define the command to launch when we are going to run the image.
-# We use the keyword 'CMD' to do that.
-# The following command will execute "python ./main.py".
 CMD ["sh", "-c", "python /home/appuser/app/main.py $MQTT_HOST $MQTT_USERNAME $MQTT_PASSWORD $MQTT_TOPIC $HOSTNAME $HEARTBEAT_INTERVAL"]
 
