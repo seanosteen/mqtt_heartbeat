@@ -13,10 +13,8 @@ RUN addgroup -g $GID appgroup && \
 
 WORKDIR /home/appuser/app
 
-
 COPY --chown=appuser:appgroup main.py /home/appuser/app/
 
 USER appuser
 
 CMD ["sh", "-c", "python /home/appuser/app/main.py $MQTT_HOST $MQTT_USERNAME $MQTT_PASSWORD $MQTT_TOPIC $HOSTNAME $HEARTBEAT_INTERVAL"]
-
