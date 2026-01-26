@@ -1,4 +1,4 @@
-FROM python:alpine3.23
+FROM python:alpine
 
 RUN apk update && apk upgrade
 
